@@ -9,7 +9,7 @@ const OrdersControl = () => {
 
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/order", {
+      const { data } = await axios.get("https://resto-pos-backend.onrender.com/api/order", {
         withCredentials: true,
       });
       setOrders(data.data);
@@ -27,7 +27,7 @@ const OrdersControl = () => {
   const handleStatusChange = async (orderId, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:4000/api/order/${orderId}`,
+        `https://resto-pos-backend.onrender.com/api/order/${orderId}`,
         { orderStatus: newStatus },
         { withCredentials: true }
       );
