@@ -10,7 +10,7 @@ const PaymentInfo = () => {
     const fetchPayments = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:4000/api/payments");
+        const res = await axios.get("https://resto-pos-backend.onrender.com/api/payments");
         setPayments(res.data.payments); // backend returns { payments: [...] }
       } catch (err) {
         console.error(err);
