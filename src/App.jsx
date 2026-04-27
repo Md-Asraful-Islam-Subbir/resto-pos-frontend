@@ -12,6 +12,7 @@ import useLoadData from "./hooks/useLoadData";
 import FullScreenLoader from "./components/shared/FullScreenLoader"
 import PaymentSuccess from "./components/menu/PaymentSuccess";
 import PaymentFail from "./components/menu/PaymentFail";
+import MenuCard from "../src/components/customer/MenuCard";
 
 function Layout() {
   const isLoading = useLoadData();
@@ -69,6 +70,7 @@ function Layout() {
         <Route path="*" element={<div>Not Found</div>} />
         <Route path="/payment-success" element={<PaymentSuccess/>} />
         <Route path="/payment-fail" element={<PaymentFail/>} />
+        <Route path="/menu-card" element={<MenuCard/>} />
       </Routes>
     </>
   );

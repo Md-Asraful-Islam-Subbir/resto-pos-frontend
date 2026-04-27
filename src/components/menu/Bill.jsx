@@ -33,7 +33,7 @@ const Bill = () => {
   const customerData = useSelector((state) => state.customer);
   const cartData = useSelector((state) => state.cart);
   const total = useSelector(getTotalPrice);
-  const taxRate = 5.25;
+  const taxRate = 5;
   const tax = (total * taxRate) / 100;
   const totalPriceWithTax = total + tax;
 
@@ -158,7 +158,7 @@ else {
         </h1>
       </div>
       <div className="flex items-center justify-between px-2 mt-1">
-        <p className="text-xs text-[#ababab] font-normal mt-1">Tax(5.25%)</p>
+        <p className="text-xs text-[#ababab] font-normal mt-1">Tax(5%)</p>
         <h1 className="text-[#f5f5f5] text-sm font-bold">৳{tax.toFixed(2)}</h1>
       </div>
       <div className="flex items-center justify-between px-2 mt-1">

@@ -25,19 +25,33 @@ const Login = () => {
     }
 
     const loginMutation = useMutation({
-      mutationFn: (reqData) => login(reqData),
-      onSuccess: (res) => {
-          const { data } = res;
-          console.log(data);
-          const { _id, name, email, phone, role } = data.data;
-          dispatch(setUser({ _id, name, email, phone, role }));
-          navigate("/");
-      },
-      onError: (error) => {
-        const { response } = error;
-        enqueueSnackbar(response.data.message, { variant: "error" });
+  mutationFn: (reqData) => login(reqData),
+  onSuccess: (res) => {
+      const { data } = res;
+      console.log("Full response:", data);
+      const { _id, name, email, phone, role } = data.data;
+      console.log("Role received:", role);
+      console.log("Role type:", typeof role);
+      
+      dispatch(setUser({ _id, name, email, phone, role }));
+      
+      // Check role and navigate
+      if (role === "Customer") {
+        console.log("Navigating to /menu-card");
+        navigate("/menu-card");
+      } else if (role === "Admin") {
+        navigate("/");
+      } else if (role === "Waiter") {
+        navigate("/tables");
+      } else {
+        navigate("/");
       }
-    })
+  },
+  onError: (error) => {
+    const { response } = error;
+    enqueueSnackbar(response.data.message, { variant: "error" });
+  }
+});
 
   return (
     <div>

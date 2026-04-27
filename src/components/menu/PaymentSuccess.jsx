@@ -8,18 +8,22 @@ const PaymentSuccess = () => {
 
   // Extract tran_id from query string
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const id = params.get("tran_id");
-    setTranId(id);
+  const params = new URLSearchParams(location.search);
+  const id = params.get("tran_id");
+  setTranId(id);
 
-    if (id) {
-      // Optional: fetch payment details from backend
-      fetch(`${import.meta.env.VITE_API_URL}/api/payments/${id}`)
-        .then(res => res.json())
-        .then(data => setPayment(data))
-        .catch(err => console.error(err));
-    }
-  }, [location]);
+  if (id) {
+    // Update order status to "completed"
+    fetch(`${import.meta.env.VITE_API_URL}/api/orders/${id}/status`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderStatus: "completed" }),
+    })
+      .then((res) => res.json())
+      .then((data) => setPayment(data))
+      .catch(console.error);
+  }
+}, [location]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-4">
